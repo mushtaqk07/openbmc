@@ -44,7 +44,6 @@ RDEPENDS_${PN}-system = " \
         amd-lcd-lib \
         amd-mctp-tool \
         amd-ras \
-        amd-yaap \
         bmcweb \
         debug-apps \
         first-boot-set-hwmon-path \
