@@ -34,20 +34,20 @@ PACKAGECONFIG[flash_bios] = "-Dhost-bios-upgrade=enabled, -Dhost-bios-upgrade=di
 
 export FLASH_SCM_FLAGS
 FLASH_SCM_FLAGS =  "-Dscm-fpga-upgrade=enabled -Dscm-fpga-upgrade=disabled"
-FLASH_SCM_FLAGS_aspeed = ""
+FLASH_SCM_FLAGS_ast2600-evb = ""
 export FLASH_HPM_FLAGS
 FLASH_HPM_FLAGS = "-Dhpm-fpga-upgrade=enabled, -Dhpm-fpga-upgrade=disabled"
-FLASH_HPM_FLAGS_aspeed = ""
+FLASH_HPM_FLAGS_ast2600-evb = ""
 export FLASH_VR_FLAGS
 FLASH_VR_FLAGS = "-Dvr-upgrade=enabled, -Dvr-upgrade=disabled"
-FLASH_VR_FLAGS_aspeed = ""
+FLASH_VR_FLAGS_ast2600-evb = ""
 export FLASH_RETIMER_FLAGS
-FLASH_RETIMER_FLAGS_aspeed = ""
+FLASH_RETIMER_FLAGS_ast2600-evb = ""
 FLASH_RETIMER_FLAGS = "-Dretimer-upgrade=enabled, -Dretimer-upgrade=disabled"
 
 PACKAGECONFIG[flash_scm_fpga] := "${FLASH_SCM_FLAGS}" 
 PACKAGECONFIG[flash_hpm_fpga] := "${FLASH_HPM_FLAGS}"
-PACKAGECONFIG[flash_vr] := "${FLASH_VR_FLAGS}"
+PACKAGECONFIG[flash_vr]       := "${FLASH_VR_FLAGS}"
 PACKAGECONFIG[flash_retimer] := "${FLASH_RETIMER_FLAGS}"
 
 python __anonymous () {
