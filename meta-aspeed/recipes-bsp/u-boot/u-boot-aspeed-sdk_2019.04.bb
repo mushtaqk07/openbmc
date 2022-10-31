@@ -1,4 +1,5 @@
 require u-boot-common-aspeed-sdk_${PV}.inc
+require conf/machine/distro/include/uboot-distrovars.inc
 
 UBOOT_MAKE_TARGET ?= "DEVICE_TREE=${UBOOT_DEVICETREE}"
 
@@ -13,12 +14,12 @@ SRC_URI += " \
             file://rsa_oem_dss_key.pem;sha256sum=64a379979200d39949d3e5b0038e3fdd5548600b2f7077a17e35422336075ad4 \
             file://rsa_pub_oem_dss_key.pem;sha256sum=40132a694a10af2d1b094b1cb5adab4d6b4db2a35e02d848b2b6a85e60738264 \
            "
-
 UBOOT_ENV_SIZE_df-phosphor-mmc = "0x10000"
 UBOOT_ENV_df-phosphor-mmc = "u-boot-env"
 UBOOT_ENV_SUFFIX_df-phosphor-mmc = "bin"
 
 do_compile_append() {
+    echo "MKCHG uboot compilation"
     if [ -n "${UBOOT_ENV}" ]
     then
         # Generate redundant environment image

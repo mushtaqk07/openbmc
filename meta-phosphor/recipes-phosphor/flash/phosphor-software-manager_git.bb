@@ -32,49 +32,27 @@ PACKAGECONFIG[ubifs_layout] = "-Dbmc-layout=ubi"
 PACKAGECONFIG[mmc_layout] = "-Dbmc-layout=mmc"
 PACKAGECONFIG[flash_bios] = "-Dhost-bios-upgrade=enabled, -Dhost-bios-upgrade=disabled"
 
-export FLASH_SCM_FLAGS
+#export FLASH_SCM_FLAGS
 FLASH_SCM_FLAGS =  "-Dscm-fpga-upgrade=enabled -Dscm-fpga-upgrade=disabled"
 FLASH_SCM_FLAGS_ast2600-evb = ""
-export FLASH_HPM_FLAGS
+FLASH_SCM_FLAGS_lipari-ast2600 = ""
+#export FLASH_HPM_FLAGS
 FLASH_HPM_FLAGS = "-Dhpm-fpga-upgrade=enabled, -Dhpm-fpga-upgrade=disabled"
 FLASH_HPM_FLAGS_ast2600-evb = ""
-export FLASH_VR_FLAGS
+FLASH_HPM_FLAGS_lipari-ast2600 = ""
+#export FLASH_VR_FLAGS
 FLASH_VR_FLAGS = "-Dvr-upgrade=enabled, -Dvr-upgrade=disabled"
 FLASH_VR_FLAGS_ast2600-evb = ""
-export FLASH_RETIMER_FLAGS
+FLASH_VR_FLAGS_lipari-ast2600 = ""
+#export FLASH_RETIMER_FLAGS
 FLASH_RETIMER_FLAGS_ast2600-evb = ""
+FLASH_RETIMER_FLAGS_lipari-ast2600 = ""
 FLASH_RETIMER_FLAGS = "-Dretimer-upgrade=enabled, -Dretimer-upgrade=disabled"
 
 PACKAGECONFIG[flash_scm_fpga] := "${FLASH_SCM_FLAGS}" 
 PACKAGECONFIG[flash_hpm_fpga] := "${FLASH_HPM_FLAGS}"
 PACKAGECONFIG[flash_vr]       := "${FLASH_VR_FLAGS}"
 PACKAGECONFIG[flash_retimer] := "${FLASH_RETIMER_FLAGS}"
-
-python __anonymous () {
-	val = d.getVar('FLASH_SCM_FLAGS')
-	bb.warn("########******FLASH_SCM_FLAGS:%s" %(val))
-}
-#PACKAGECONFIG[flash_scm_fpga] = "-Dhpm-fpga-upgrade=enabled, -Dhpm-fpga-upgrade=disabled"
-#PACKAGECONFIG[flash_hpm_fpga] = "-Dhpm-fpga-upgrade=enabled, -Dhpm-fpga-upgrade=disabled"
-#PACKAGECONFIG[flash_vr] = "-Dvr-upgrade=enabled, -Dvr-upgrade=disabled"
-#PACKAGECONFIG[flash_retimer] = "-Dretimer-upgrade=enabled, -Dretimer-upgrade=disabled"
-python __anonymous () {
-	target_machine = d.getVar("MACHINE")
-	if target_machine == "evb-ast2600" :
-		bb.warn("MKCHG Machine %s skip fpga,retimer packaging" %(target_machine))
-		#d.setVar('FLASH_SCM_FLAGS','-Dscm-fpga-upgrade=enabled -Dscm-fpga-upgrade=disabled')
-		#d.setVar('FLASH_HPM_FLAGS','')
-		#d.setVar('FLASH_VR_FLAGS','')
-		#d.setVar('FLASH_RETIMER_FLAGS','')
-	else :
-		d.setVar('FLASH_SCM_FLAGS','-Dscm-fpga-upgrade=enabled -Dscm-fpga-upgrade=disabled')
-		d.setVar('FLASH_HPM_FLAGS','-Dhpm-fpga-upgrade=enabled, -Dhpm-fpga-upgrade=disabled')
-		d.setVar('FLASH_VR_FLAGS','-Dvr-upgrade=enabled, -Dvr-upgrade=disabled')
-		d.setVar('FLASH_RETIMER_FLAGS','-Dretimer-upgrade=enabled, -Dretimer-upgrade=disabled')
-}
-
-inherit logging
-
 
 inherit meson pkgconfig
 inherit obmc-phosphor-dbus-service

@@ -1,0 +1,19 @@
+diff --git a/arch/arm/dts/ast2600-evb.dts b/arch/arm/dts/ast2600-evb.dts
+index 6db1efdda5..3ac009eb40 100644
+--- a/arch/arm/dts/ast2600-evb.dts
++++ b/arch/arm/dts/ast2600-evb.dts
+@@ -101,10 +101,11 @@
+ 
+ &mac2 {
+ 	status = "okay";
+-	phy-mode = "rgmii";
+-	phy-handle = <&ethphy2>;
++	phy-mode = "rmii";
++	use-ncsi;
++
+ 	pinctrl-names = "default";
+-	pinctrl-0 = <&pinctrl_rgmii3_default>;
++	pinctrl-0 = <&pinctrl_rmii3_default>;
+ };
+ 
+ &mac3 {
